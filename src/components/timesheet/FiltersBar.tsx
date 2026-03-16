@@ -50,7 +50,7 @@ export function FiltersBar({ onFilterChange }: FiltersBarProps) {
       <div className="relative">
         <button
           onClick={() => { setDateDropdown((p) => !p); setStatusDropdown(false) }}
-          className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+          className="flex items-center gap-2 rounded-md border border-[#D1D5DB] bg-white px-2 py-3 text-sm text-[#6B7280] w-[140px] justify-between hover:bg-gray-50 transition-colors"
         >
           {dateLabel}
           <ChevronDown size={14} className="text-gray-400" />
@@ -103,7 +103,7 @@ export function FiltersBar({ onFilterChange }: FiltersBarProps) {
       <div className="relative">
         <button
           onClick={() => { setStatusDropdown((p) => !p); setDateDropdown(false) }}
-          className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+          className="flex items-center gap-2 rounded-md border border-[#D1D5DB] bg-white px-2 py-3 w-[140px] justify-between text-sm text-[#6B7280] hover:bg-gray-50 transition-colors"
         >
           {STATUS_OPTIONS.find((o) => o.value === status)?.label || 'Status'}
           <ChevronDown size={14} className="text-gray-400" />

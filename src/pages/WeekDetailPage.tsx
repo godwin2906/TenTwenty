@@ -1,31 +1,31 @@
-import { useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react'
-import { Navbar } from '../components/layout/Navbar'
-import { WeekDetailView } from '../components/timesheet/WeekDetailView'
-import { useTimesheetDetail } from '../hooks/useTimesheets'
+import { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import { Navbar } from "../components/layout/Navbar";
+import { WeekDetailView } from "../components/timesheet/WeekDetailView";
+import { useTimesheetDetail } from "../hooks/useTimesheets";
 
 export function WeekDetailPage() {
-  const { weekId } = useParams<{ weekId: string }>()
-  const navigate = useNavigate()
-  const { timesheet, isLoading, error, fetchTimesheet, addEntry, editEntry, removeEntry } =
-    useTimesheetDetail(weekId!)
+  const { weekId } = useParams<{ weekId: string }>();
+  const navigate = useNavigate();
+  const {
+    timesheet,
+    isLoading,
+    error,
+    fetchTimesheet,
+    addEntry,
+    editEntry,
+    removeEntry,
+  } = useTimesheetDetail(weekId!);
 
   useEffect(() => {
-    if (weekId) fetchTimesheet()
-  }, [weekId, fetchTimesheet])
+    if (weekId) fetchTimesheet();
+  }, [weekId, fetchTimesheet]);
 
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <main className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
-        <button
-          onClick={() => navigate('/dashboard')}
-          className="mb-4 flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 transition-colors"
-        >
-          <ArrowLeft size={14} />
-          Back to timesheets
-        </button>
+      <main className="mx-auto max-w-[88%] px-4 py-8 sm:px-6">
 
         {isLoading ? (
           <div className="flex items-center justify-center py-32">
@@ -49,12 +49,14 @@ export function WeekDetailPage() {
               onEditEntry={editEntry}
               onDeleteEntry={removeEntry}
             />
-            <div className="mt-6 text-center">
-              <p className="text-xs text-gray-400">© 2024 tentwenty. All rights reserved.</p>
+            <div className="px-6 py-8 text-center bg-white shadow-sm mt-4 rounded-xl">
+              <p className="text-xs text-[#6B7280] font-normal">
+                © 2024 tentwenty. All rights reserved.
+              </p>
             </div>
           </>
         ) : null}
       </main>
     </div>
-  )
+  );
 }

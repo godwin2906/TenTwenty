@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { format, parseISO } from 'date-fns'
-import { Plus, MoreHorizontal } from 'lucide-react'
+import { Plus, MoreHorizontal, Ellipsis } from 'lucide-react'
 import { EntryModal } from './EntryModal'
 import type { Timesheet, TimesheetEntry, EntryFormData } from '../../types'
 
@@ -84,19 +84,19 @@ export function WeekDetailView({ timesheet, onAddEntry, onEditEntry, onDeleteEnt
   }
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white">
-      <div className="border-b border-gray-200 px-6 py-4">
+    <div className="rounded-lg shadow-sm  bg-white">
+      <div className=" px-6 py-4">
         <div className="flex items-start justify-between">
           <div>
-            <h2 className="text-base font-semibold text-gray-900">This week's timesheet</h2>
-            <p className="text-sm text-gray-400">
+            <h2 className="text-base font-semibold text-[#111928]">This week's timesheet</h2>
+            <p className="text-sm text-[#6B7280] mt-5">
               {format(parseISO(timesheet.startDate), 'd')} -{' '}
               {format(parseISO(timesheet.endDate), 'd MMMM, yyyy')}
             </p>
           </div>
           <div className="flex flex-col items-end gap-1">
-            <span className="text-sm font-medium text-gray-700">
-              <span className="text-orange-500">{timesheet.totalHours}</span>/40 hrs
+            <span className="text-sm font-medium text-[#111928] bg-[#FFFFFF] shadow-sm ">
+              <span className="text-[#111928]">{timesheet.totalHours}</span>/40 hrs
             </span>
             <div className="flex items-center gap-2">
               <div className="h-1.5 w-32 overflow-hidden rounded-full bg-gray-200">
@@ -111,30 +111,30 @@ export function WeekDetailView({ timesheet, onAddEntry, onEditEntry, onDeleteEnt
         </div>
       </div>
 
-      <div className="divide-y divide-gray-100">
+      <div className="">
         {grouped.map(({ date, entries }) => (
-          <div key={date} className="px-6 py-3">
-            <p className="mb-2 text-sm font-semibold text-gray-700">
+          <div key={date} className="px-6 py-3 flex gap-11 justify-between">
+            <p className="mb-2 text-sm font-semibold text-[#111928]">
               {format(parseISO(date), 'MMM d')}
             </p>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 w-[92%]">
               {entries.map((entry) => (
                 <div
                   key={entry.id}
-                  className="flex items-center justify-between rounded px-3 py-2 text-sm hover:bg-gray-50 group"
+                  className="flex items-center justify-between rounded px-3 py-2 text-sm border border-[#E5E7EB]"
                 >
-                  <span className="flex-1 text-gray-700">{entry.description}</span>
+                  <span className="flex-1 text-[#111928]">{entry.description}</span>
                   <div className="flex items-center gap-3">
-                    <span className="text-gray-400">{entry.hours} hrs</span>
-                    <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">
+                    <span className="text-[#9CA3AF]">{entry.hours} hrs</span>
+                    <span className="rounded-[20px] bg-[#E1EFFE] px-2 py-0.5 text-xs font-medium text-[#1E429F]">
                       {entry.project}
                     </span>
                     <div className="relative">
                       <button
                         onClick={() => setOpenMenuId(openMenuId === entry.id ? null : entry.id)}
-                        className="rounded p-1 text-gray-300 hover:text-gray-600 hover:bg-gray-100 transition-colors opacity-0 group-hover:opacity-100"
+                        className="transition-colors"
                       >
-                        <MoreHorizontal size={14} />
+                       <Ellipsis color="#6B7280" />
                       </button>
                       {openMenuId === entry.id && (
                         <>
@@ -161,7 +161,7 @@ export function WeekDetailView({ timesheet, onAddEntry, onEditEntry, onDeleteEnt
               ))}
               <button
                 onClick={() => handleOpenAdd(date)}
-                className="flex items-center gap-1 rounded border border-dashed border-gray-200 px-3 py-2 text-sm text-blue-500 hover:border-blue-300 hover:bg-blue-50 transition-colors mt-1"
+                 className="flex items-center justify-center text-center gap-1 rounded border border-dashed border-[#D1D5DB] px-3 py-2 text-sm text-[#6B7280] hover:text-[#1A56DB] hover:border-[#1A56DB] hover:bg-[#E1EFFE] transition-colors w-full mt-1"
               >
                 <Plus size={12} />
                 Add new task
@@ -177,7 +177,7 @@ export function WeekDetailView({ timesheet, onAddEntry, onEditEntry, onDeleteEnt
             </p>
             <button
               onClick={() => handleOpenAdd(date)}
-              className="flex items-center gap-1 rounded border border-dashed border-gray-200 px-3 py-2 text-sm text-blue-500 hover:border-blue-300 hover:bg-blue-50 transition-colors w-full"
+              className="flex items-center text-center justify-center gap-1 rounded border border-dashed border-[#D1D5DB] px-3 py-2 text-sm text-[#6B7280] hover:text-[#1A56DB] hover:border-[#1A56DB] hover:bg-[#E1EFFE] transition-colors w-full"
             >
               <Plus size={12} />
               Add new task

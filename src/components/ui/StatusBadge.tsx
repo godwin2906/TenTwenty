@@ -7,22 +7,22 @@ interface StatusBadgeProps {
 const config: Record<TimesheetStatus, { label: string; className: string }> = {
   completed: {
     label: 'COMPLETED',
-    className: 'bg-green-100 text-green-700 border border-green-200',
+    className: 'bg-[#DEF7EC] text-[#03543F]',
   },
   incomplete: {
     label: 'INCOMPLETE',
-    className: 'bg-yellow-100 text-yellow-700 border border-yellow-200',
+    className: 'bg-[#FDF6B2] text-[#723B13] border',
   },
   missing: {
     label: 'MISSING',
-    className: 'bg-red-100 text-red-600 border border-red-200',
+  className: 'bg-[#FCE8F3] text-[#99154B]',
   },
 }
 
 export function StatusBadge({ status }: StatusBadgeProps) {
   const { label, className } = config[status]
   return (
-    <span className={`inline-flex items-center rounded px-2 py-0.5 text-xs font-semibold tracking-wide ${className}`}>
+    <span className={`inline-flex items-center rounded px-2 py-1 text-[11px] font-medium tracking-wide ${className}`}>
       {label}
     </span>
   )

@@ -25,9 +25,9 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
         className="absolute inset-0 bg-gray-700/60 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative z-10 w-full max-w-md rounded-lg bg-white shadow-xl mx-4">
-        <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
-          <h2 className="text-base font-semibold text-gray-900">{title}</h2>
+      <div className="relative z-10 w-full max-w-xl rounded-lg bg-white shadow-xl mx-4">
+        <div className="flex items-center justify-between border-b border-[#D1D5DB] px-5 py-6">
+          <h2 className="text-base font-semibold text-[#111928]">{title}</h2>
           <button
             onClick={onClose}
             className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
@@ -35,7 +35,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
             <X size={16} />
           </button>
         </div>
-        <div className="px-5 py-4">{children}</div>
+        <div className="">{children}</div>
       </div>
     </div>
   )

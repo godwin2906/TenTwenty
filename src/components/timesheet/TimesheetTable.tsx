@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ChevronUp, ChevronDown, ChevronsUpDown } from 'lucide-react'
+import { ChevronUp, ChevronDown, ChevronsUpDown, ArrowDown, ArrowDownUp, ArrowUp } from 'lucide-react'
 import { StatusBadge } from '../ui/StatusBadge'
 import { format, parseISO } from 'date-fns'
 import type { Timesheet, TimesheetStatus } from '../../types'
@@ -24,10 +24,9 @@ function formatDateRange(start: string, end: string): string {
 }
 
 function SortIcon({ field, sortKey, sortDir }: { field: SortKey; sortKey: SortKey; sortDir: SortDir }) {
-  if (field !== sortKey) return <ChevronsUpDown size={12} className="text-gray-400" />
   return sortDir === 'asc'
-    ? <ChevronUp size={12} className="text-blue-600" />
-    : <ChevronDown size={12} className="text-blue-600" />
+    ? <ArrowDown size={12} />
+    : <ArrowUp size={12} />
 }
 
 export function TimesheetTable({ timesheets }: TimesheetTableProps) {
@@ -59,9 +58,9 @@ export function TimesheetTable({ timesheets }: TimesheetTableProps) {
   const paginated = sorted.slice((page - 1) * pageSize, page * pageSize)
 
   const getActionLabel = (status: TimesheetStatus) => {
-    if (status === 'completed') return { label: 'View', className: 'text-blue-600 hover:text-blue-800' }
-    if (status === 'incomplete') return { label: 'Update', className: 'text-blue-600 hover:text-blue-800' }
-    return { label: 'Create', className: 'text-blue-600 hover:text-blue-800' }
+    if (status === 'completed') return { label: 'View', className: 'text-[#1C64F2]' }
+    if (status === 'incomplete') return { label: 'Update', className: 'text-[#1C64F2]' }
+    return { label: 'Create', className: 'text-[#1C64F2]' }
   }
 
   const pageNumbers = (): (number | '...')[] => {
@@ -77,7 +76,7 @@ export function TimesheetTable({ timesheets }: TimesheetTableProps) {
   const SortHeader = ({ field, label }: { field: SortKey; label: string }) => (
     <button
       onClick={() => handleSort(field)}
-      className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-gray-500 hover:text-gray-700 transition-colors"
+      className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-[#6B7280] hover:text-gray-700 transition-colors"
     >
       {label}
       <SortIcon field={field} sortKey={sortKey} sortDir={sortDir} />
@@ -89,8 +88,8 @@ export function TimesheetTable({ timesheets }: TimesheetTableProps) {
       <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200 bg-gray-50">
-              <th className="px-6 py-3 text-left">
+            <tr className="border-b border-gray-200 bg-[#F9FAFB]">
+              <th className="px-6 py-5 text-left">
                 <SortHeader field="weekNumber" label="Week #" />
               </th>
               <th className="px-6 py-3 text-left">
@@ -115,9 +114,9 @@ export function TimesheetTable({ timesheets }: TimesheetTableProps) {
               paginated.map((ts) => {
                 const action = getActionLabel(ts.status)
                 return (
-                  <tr key={ts.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 text-sm text-gray-700">{ts.weekNumber}</td>
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                  <tr key={ts.id} className=" transition-colors">
+                    <td className="pr-1 pl-6 py-4 text-sm text-[#111928] bg-[#F9FAFB] w-[8%]">{ts.weekNumber}</td>
+                    <td className="px-6 py-4 text-sm text-[#6B7280] font-normal">
                       {formatDateRange(ts.startDate, ts.endDate)}
                     </td>
                     <td className="px-6 py-4">
@@ -126,7 +125,7 @@ export function TimesheetTable({ timesheets }: TimesheetTableProps) {
                     <td className="px-6 py-4 text-right">
                       <button
                         onClick={() => navigate(`/dashboard/${ts.id}`)}
-                        className={`text-sm font-medium transition-colors ${action.className}`}
+                        className={`text-sm font-normal transition-colors ${action.className}`}
                       >
                         {action.label}
                       </button>
@@ -144,7 +143,7 @@ export function TimesheetTable({ timesheets }: TimesheetTableProps) {
           <select
             value={pageSize}
             onChange={(e) => { setPageSize(Number(e.target.value)); setPage(1) }}
-            className="rounded-md border border-gray-300 bg-white px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="border border-[#E5E7EB] bg-[#F9FAFB] px-2 py-1.5 text-sm focus:outline-none rounded-lg text-[#4A5565]"
           >
             {PAGE_SIZE_OPTIONS.map((s) => (
               <option key={s} value={s}>{s} per page</option>
@@ -152,11 +151,11 @@ export function TimesheetTable({ timesheets }: TimesheetTableProps) {
           </select>
         </div>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center border border-[#E5E7EB] rounded-[12px]">
           <button
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page === 1}
-            className="rounded px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 transition-colors"
+            className="px-3 py-1.5 text-sm text-[#4A5565] font-normal border-r border-[#E5E7EB]  disabled:cursor-not-allowed disabled:opacity-40 transition-colors"
           >
             Previous
           </button>
@@ -168,10 +167,10 @@ export function TimesheetTable({ timesheets }: TimesheetTableProps) {
               <button
                 key={p}
                 onClick={() => setPage(p as number)}
-                className={`min-w-[32px] rounded px-2 py-1.5 text-sm transition-colors ${
+                className={`min-w-[32px] px-2 py-1.5 text-sm border-r font-normal border-[#E5E7EB] transition-colors ${
                   page === p
-                    ? 'bg-blue-600 font-medium text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
+                    ? 'text-[#1447E6] bg-[#F9FAFB]'
+                    : 'text-[#4A5565]'
                 }`}
               >
                 {p}
@@ -182,7 +181,7 @@ export function TimesheetTable({ timesheets }: TimesheetTableProps) {
           <button
             onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={page === totalPages}
-            className="rounded px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40 transition-colors"
+            className="px-3 py-1.5 text-sm text-[#4A5565] font-normal disabled:cursor-not-allowed disabled:opacity-40 transition-colors"
           >
             Next
           </button>

@@ -38,7 +38,7 @@ export function LoginPage() {
   return (
     <div className="flex h-screen w-screen overflow-hidden">
       <div className="flex w-full flex-col justify-center px-10 sm:w-1/2 lg:px-20">
-        <div className="mx-auto w-full max-w-sm">
+        <div className="mx-auto w-full">
           <h1 className="mb-6 text-2xl font-bold text-gray-900">Welcome back</h1>
 
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" noValidate>
@@ -111,16 +111,16 @@ export function LoginPage() {
             </button>
           </form>
 
-          <p className="mt-6 text-xs text-gray-400">
+          {/* <p className="mt-6 text-xs text-gray-400">
             Demo: <span className="font-medium text-gray-600">john@example.com</span> / <span className="font-medium text-gray-600">password123</span>
-          </p>
+          </p> */}
         </div>
       </div>
 
-      <div className="hidden sm:flex sm:w-1/2 flex-col items-start justify-end bg-blue-600 p-16">
+      <div className="hidden sm:flex sm:w-1/2 flex-col items-center justify-center bg-blue-600 p-16">
         <div>
           <h2 className="mb-4 text-4xl font-bold text-white">ticktock</h2>
-          <p className="max-w-sm text-sm leading-relaxed text-blue-100">
+          <p className="w-[100%] text-sm leading-relaxed text-blue-100">
             Introducing ticktock, our cutting-edge timesheet web application designed to
             revolutionize how you manage employee work hours. With ticktock, you can
             effortlessly track and monitor employee attendance and productivity from anywhere,
