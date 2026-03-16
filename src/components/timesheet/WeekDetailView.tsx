@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { format, parseISO } from 'date-fns'
-import { Plus, MoreHorizontal, Ellipsis } from 'lucide-react'
+import { Plus, Ellipsis } from 'lucide-react'
 import { EntryModal } from './EntryModal'
 import type { Timesheet, TimesheetEntry, EntryFormData } from '../../types'
 

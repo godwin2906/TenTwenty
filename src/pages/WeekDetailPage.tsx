@@ -1,13 +1,11 @@
 import { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { useParams} from "react-router-dom";
 import { Navbar } from "../components/layout/Navbar";
 import { WeekDetailView } from "../components/timesheet/WeekDetailView";
 import { useTimesheetDetail } from "../hooks/useTimesheets";
 
 export function WeekDetailPage() {
   const { weekId } = useParams<{ weekId: string }>();
-  const navigate = useNavigate();
   const {
     timesheet,
     isLoading,

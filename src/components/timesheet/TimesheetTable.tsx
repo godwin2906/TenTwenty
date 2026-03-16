@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ChevronUp, ChevronDown, ChevronsUpDown, ArrowDown, ArrowDownUp, ArrowUp } from 'lucide-react'
+import { ArrowDown, ArrowUp } from 'lucide-react'
 import { StatusBadge } from '../ui/StatusBadge'
 import { format, parseISO } from 'date-fns'
 import type { Timesheet, TimesheetStatus } from '../../types'
@@ -23,7 +23,7 @@ function formatDateRange(start: string, end: string): string {
   return `${sDay} - ${eDay} ${month}`
 }
 
-function SortIcon({ field, sortKey, sortDir }: { field: SortKey; sortKey: SortKey; sortDir: SortDir }) {
+function SortIcon({ sortDir }: { field: SortKey; sortKey: SortKey; sortDir: SortDir }) {
   return sortDir === 'asc'
     ? <ArrowDown size={12} />
     : <ArrowUp size={12} />
